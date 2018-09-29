@@ -1,0 +1,156 @@
+@charset "UTF-8";
+body,
+html {
+  background: #f0f0f0;
+  color: #505050;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-overflow-scrolling: touch;
+}
+body,
+button,
+input,
+select,
+textarea {
+  font: 14px/1.5 '\5b8b\4f53', 'Helvetica Neue', Arial, 'Liberation Sans',
+    FreeSans, 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  line-height: 20px;
+}
+article,
+aside,
+blockquote,
+body,
+button,
+code,
+dd,
+details,
+div,
+dl,
+dt,
+fieldset,
+figcaption,
+figure,
+footer,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header,
+hgroup,
+hr,
+html,
+input,
+legend,
+li,
+menu,
+nav,
+ol,
+p,
+pre,
+section,
+td,
+textarea,
+th,
+ul {
+  padding: 0;
+  margin: 0;
+}
+ol,
+ul {
+  list-style: none;
+}
+body,
+div,
+fieldset,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+html,
+p {
+  -webkit-text-size-adjust: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+fieldset,
+image {
+  border: none;
+}
+:focus,
+a:focus {
+  outline: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 400;
+}
+input[type='button'] {
+  -webkit-appearance: none;
+  outline: 0;
+}
+input::-webkit-input-placeholder {
+  color: #969;
+}
+textarea::-webkit-input-placeholder {
+  color: #969;
+}
+input:focus::-webkit-input-placeholder {
+  color: #969;
+}
+input::-webkit-input-speech-button {
+  display: none;
+}
+a,
+button,
+input,
+optgroup,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+  color: inherit;
+}
+a {
+  text-decoration: none;
+}
+.overflow-txt {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.clearfix:after,
+.clearfix:before {
+  display: table;
+  content: ' ';
+  height: 0;
+  font-size: 0;
+  line-height: 0;
+}
+.clearfix:after {
+  clear: both;
+}
+.block {
+  padding: 0;
+  margin: 0;
+  display: block;
+}
