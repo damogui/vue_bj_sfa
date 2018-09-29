@@ -1,0 +1,12 @@
+@import '../../lib/hotcss/px2rem.scss';
+
+$act-color: #10903d;
+$text-color-imp: #000;
+$text-color: #757575;
+$src-bg: #fafafa;
+
+// 设置字体大小
+$text-size-imp: px2rem(36);
+$text-size-mid: px2rem(28);
+$text-size:px2rem(24);
+$text-size-small: px2rem(22);

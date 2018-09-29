@@ -3,24 +3,25 @@
     <h1>欢迎登录宝洁SFA系统</h1>
     <div class="top_hat"></div>
     <div class="login-box">
+      <!-- logo -->
       <div class="logo-wrap">
-        <div class="logo-box">
-        </div>
+        <div class="logo-box"></div>
       </div>
-      <div class="input-group" :class="{active: act_input===1}">
+      <!-- 登录的表达 -->
+      <div class="input-group" :class="{active: act_index===1}">
         <label for="cm_code">公司编号:</label>
-        <input type="number" @click="act_input=1" id="cm_code">
-        </div>
-      <div class="input-group" :class="{active: act_input===2}">
-        <label for="cm_code">公司编号:</label>
-        <input type="text" @click="act_input=2" v-model="PNO" id="PNO">
-        </div>
-      <div class="input-group" :class="{active: act_input===3}">
-        <label for="cm_code">公司编号:</label>
-        <input type="password" @click="act_input=3" id="Passwd">
-        </div>
+        <input @focus="act_index=1" type="number" id="cm_code" v-model="cm_code">
+      </div>
+      <div class="input-group" :class="{active: act_index===2}">
+        <label for="PNO">员工编号:</label>
+        <input @focus="act_index=2" type="number" id="PNO" v-model="cm_code">
+      </div>
+      <div class="input-group" :class="{active: act_index===3}">
+        <label for="Passwd">用户密码:</label>
+        <input @focus="act_index=3" type="number" id="Passwd" v-model="cm_code">
       </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -28,10 +29,8 @@ export default {
   name: "login",
   data() {
     return {
-      cm_code: "",
-      PNO: "",
-      Passwd: "",
-      act_input: 1
+      act_index: 1,
+      cm_code: ""
     };
   }
 };
@@ -46,9 +45,6 @@ body,
 
 <style lang="scss" scoped>
 /* @import "../lib/hotcss/px2rem.scss"; */
-$text-color: #757575;
-$title-color: #000;
-$btn-color: #10903d;
 h1 {
   text-align: center;
   font-size: px2rem(36);
@@ -79,38 +75,34 @@ h1 {
     .logo-wrap {
       padding: px2rem(80) 0;
       .logo-box {
-        height: px2rem(190);
         width: px2rem(190);
+        height: px2rem(190);
         margin: 0 auto;
-        background: url(../assets/logo.jpg) no-repeat;
+        background: url(../assets/logo.jpg);
         background-size: cover;
       }
     }
-    .input-group.active {
-      border: 1px solid $btn-color;
-      color: $btn-color;
-    }
+
     .input-group {
-      height: px2rem(90);
-      width: px2rem(473);
+      border: 2px solid #e2e2e2;
       border-radius: px2rem(45);
-      border: 1px solid $text-color;
-      margin: 0 auto;
-      font-size: px2rem(28);
-      padding: 0 px2rem(36);
+      font-size: $text-size-mid;
       line-height: px2rem(90);
+      padding: 0 px2rem(36);
       color: $text-color;
-      margin-bottom: px2rem(30);
-      label {
-      }
+      width: px2rem(401);
+      margin: 0 auto px2rem(30);
       input {
         border: 0 none;
-        font-size: px2rem(36);
-        width: px2rem(220);
+        font-size: $text-size-mid;
+        line-height: px2rem(90);
+        width: px2rem(200);
         padding-left: 1em;
-        line-height: px2rem(36);
-        font-size: px2rem(28);
       }
+    }
+    .input-group.active {
+      color: $act-color;
+      border: 2px solid $act-color;
     }
   }
 }
