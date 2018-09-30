@@ -6,6 +6,7 @@
 
 <script>
 import "./assets/common.css";
+import "mint-ui/lib/style.css";
 export default {};
 </script>
 

@@ -20,6 +20,14 @@
         <label for="Passwd">用户密码:</label>
         <input @focus="act_index=3" type="number" id="Passwd" v-model="cm_code">
       </div>
+      <div class="input-row">
+        <div class="ck_group">
+          <input type="checkbox" name="" id="save_pwd"><label for="save_pwd">保存密码</label> 
+        </div>
+        <div class="ck_group">
+          <input type="checkbox" name="" id="auto_login"><label for="auto_login">自动登录</label> 
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -103,6 +111,22 @@ h1 {
     .input-group.active {
       color: $act-color;
       border: 2px solid $act-color;
+    }
+    .input-row {
+      font-size: $text-size;
+      padding: px2rem(10) px2rem(64);
+      display: flex;
+      justify-content: space-around;
+      .ck_group {
+        text-align: center;
+        flex: 1 1 50%;
+        input {
+          display: inline-block;
+          height: 24px;
+          width: 24px;
+          background-color: #fff;
+        }
+      }
     }
   }
 }
