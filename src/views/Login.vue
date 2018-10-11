@@ -21,12 +21,12 @@
         <input @focus="act_index=3" type="password" id="Passwd" v-model="passwd">
       </div>
       <div class="ck-row">
-        <div class="ckbox_wrap">
-          <i class="iconfont icon-border"></i>
+        <div class="ckbox_wrap" @click="remembSet" :class="{active: rememb}">
+          <i class="iconfont" :class="{'icon-check-square': rememb, 'icon-border': !rememb}"></i>
           <span>记住密码</span>
         </div>
-        <div class="ckbox_wrap">
-          <i class="iconfont icon-border"></i>
+        <div @click="autoLoginSet" class="ckbox_wrap" :class="{active: autologin}">
+          <i class="iconfont" :class="{'icon-check-square': autologin, 'icon-border': !autologin}"></i>
           <span>自动登录</span>
         </div>
       </div>
@@ -43,8 +43,22 @@ export default {
       act_index: 1,
       cm_code: "",
       PNO: "",
-      passwd: ""
+      passwd: "",
+      rememb: false,
+      autologin: false
     };
+  },
+  methods: {
+    autoLoginSet() {
+      // 设置当前的autologin为true或者false，
+      this.autologin = !this.autologin;
+      // 另外设置 rememb的值
+      this.autologin && (this.rememb = true);
+    },
+    remembSet() {
+      this.rememb = !this.rememb;
+      this.rememb || (this.autologin = false);
+    }
   }
 };
 </script>
@@ -127,6 +141,9 @@ h1 {
           width: px2rem(30);
           font-size: px2rem(30);
         }
+      }
+      .ckbox_wrap.active {
+        color: $act-color;
       }
     }
   }
