@@ -31,6 +31,9 @@
         </div>
       </div>
     </div>
+    <div class="btn-wrap">
+      <p>登录</p>
+    </div>
   </div>
 </template>
 
@@ -74,6 +77,13 @@ h1 {
   color: #fff;
 }
 
+@mixin login_wrap {
+  width: px2rem(600);
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: px2rem(20);
+}
+
 .login {
   background-color: #2ade69;
   height: 100%;
@@ -87,11 +97,8 @@ h1 {
   }
 
   .login-box {
-    width: px2rem(600);
+    @include login_wrap;
     height: px2rem(836);
-    margin: 0 auto;
-    background-color: #fff;
-    border-radius: px2rem(20);
     .logo-wrap {
       padding: px2rem(80) 0;
       .logo-box {
@@ -146,6 +153,15 @@ h1 {
         color: $act-color;
       }
     }
+  }
+  .btn-wrap {
+    @include login_wrap;
+    height: px2rem(100);
+    text-align: center;
+    line-height: px2rem(100);
+    font-size: $text-size-imp;
+    color: $act-color;
+    margin-top: px2rem(20);
   }
 }
 </style>
