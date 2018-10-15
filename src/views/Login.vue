@@ -31,13 +31,15 @@
         </div>
       </div>
     </div>
-    <div class="btn-wrap">
+    <div class="btn-wrap" @click="loginBtnClick">
       <p>登录</p>
     </div>
   </div>
 </template>
 
 <script>
+import { Indicator } from "mint-ui";
+
 import "../assets/font/iconfont.css";
 export default {
   name: "login",
@@ -61,6 +63,19 @@ export default {
     remembSet() {
       this.rememb = !this.rememb;
       this.rememb || (this.autologin = false);
+    },
+    loginBtnClick() {
+      // 判断当前是否校验全部通过
+      // this.errors.any(); // boolean 如果有有错误那么返回true,否则 false
+      if (this.errors.any()) {
+        return;
+      }
+      // 弹出等待的遮罩 层,防止二次点击.
+      Indicator.open("正在登陆...");
+      // 发送ajax请求 ,  axios
+      setTimeout(() => {
+        Indicator.close();
+      }, 2000);
     }
   }
 };
