@@ -8,17 +8,17 @@
         <div class="logo-box"></div>
       </div>
       <!-- 登录的表达 -->
-      <div class="input-group" :class="{active: act_index===1}">
+      <div class="input-group" :class="{active: act_index===1, error: errors.has('cno')}">
         <label for="cm_code">公司编号:</label>
-        <input @focus="act_index=1" type="number" id="cm_code" v-model="cm_code">
+        <input name="cno" v-validate="{required:true, max: 6, min: 4}" @focus="act_index=1" type="number" id="cm_code" v-model="cm_code">
       </div>
-      <div class="input-group" :class="{active: act_index===2}">
+      <div class="input-group" :class="{active: act_index===2, error: errors.has('pno')}">
         <label for="PNO">员工编号:</label>
-        <input @focus="act_index=2" type="number" id="PNO" v-model="PNO">
+        <input @focus="act_index=2" name="pno" type="number" id="PNO" v-validate="{required:true, max: 12, min: 4}" v-model="PNO">
       </div>
-      <div class="input-group" :class="{active: act_index===3}">
+      <div class="input-group" :class="{active: act_index===3, error: errors.has('pwd')}">
         <label for="Passwd">用户密码:</label>
-        <input @focus="act_index=3" type="password" id="Passwd" v-model="passwd">
+        <input @focus="act_index=3" type="password" name="pwd" v-validate="{required:true, max: 12, min: 4}" id="Passwd" v-model="passwd">
       </div>
       <div class="ck-row">
         <div class="ckbox_wrap" @click="remembSet" :class="{active: rememb}">
@@ -134,6 +134,10 @@ h1 {
       color: $act-color;
       border: 2px solid $act-color;
     }
+    .input-group.error {
+      color: red;
+      border: 2px solid red;
+    }
     .ck-row {
       @include rowStyle();
       font-size: $text-size;
@@ -156,6 +160,8 @@ h1 {
   }
   .btn-wrap {
     @include login_wrap;
+    font-weight: 700;
+    letter-spacing: px2rem(10);
     height: px2rem(100);
     text-align: center;
     line-height: px2rem(100);
