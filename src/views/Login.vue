@@ -39,7 +39,7 @@
 
 <script>
 import axios from "axios";
-import { Indicator } from "mint-ui";
+import { Indicator, Toast } from "mint-ui";
 
 import "../assets/font/iconfont.css";
 export default {
@@ -55,8 +55,19 @@ export default {
     };
   },
   mounted() {
-    // 强制执行校验
+    let data = JSON.parse(localStorage.getItem("Login_data"));
+    if (data) {
+      this.cm_code = data.CNO;
+      this.passwd = data.Passwd;
+      this.PNO = data.PNO;
+      this.autologin = data.autologin;
+      this.rememb = data.rememb;
+      // 强制执行校验
+    }
     this.$validator.validate();
+    if (this.autologin) {
+      this.loginBtnClick(); // 方法就是登录
+    }
   },
   methods: {
     autoLoginSet() {
@@ -88,11 +99,38 @@ export default {
           Passwd: this.passwd
         })
         .then(res => {
-          console.log(res.data);
+          // console.log(res.data);
+          if (res.data.code == 1) {
+            // 登录成功
+            // 记住用户密码
+            localStorage.setItem(
+              "Login_data",
+              JSON.stringify({
+                rememb: this.rememb,
+                autologin: this.autologin,
+                PNO: this.rememb ? this.PNO : "",
+                CNO: this.rememb ? this.cm_code : "",
+                Passwd: this.rememb ? this.passwd : ""
+              })
+            );
+            // 跳转到home页面
+            this.$router.push("/home");
+          } else {
+            // 登录失败,用户名密码不正确
+            Toast({
+              message: "用户名密码不正确,登录失败!",
+              duration: 2000
+            });
+          }
           Indicator.close();
         })
         .catch(e => {
-          console.log("登录失败!", e);
+          // console.log("登录失败!", e);
+          // 登录异常失败!
+          Toast({
+            message: "登录异常失败!",
+            duration: 2000
+          });
           Indicator.close();
         });
     }
