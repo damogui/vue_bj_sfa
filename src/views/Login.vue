@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import { Indicator } from "mint-ui";
 
 import "../assets/font/iconfont.css";
@@ -52,6 +53,10 @@ export default {
       rememb: false,
       autologin: false
     };
+  },
+  mounted() {
+    // 强制执行校验
+    this.$validator.validate();
   },
   methods: {
     autoLoginSet() {
@@ -73,9 +78,23 @@ export default {
       // 弹出等待的遮罩 层,防止二次点击.
       Indicator.open("正在登陆...");
       // 发送ajax请求 ,  axios
-      setTimeout(() => {
-        Indicator.close();
-      }, 2000);
+      // setTimeout(() => {
+      //   Indicator.close();
+      // }, 2000);
+      axios
+        .post("http://localhost:3002/api/login", {
+          CNO: this.cm_code,
+          PNO: this.PNO,
+          Passwd: this.passwd
+        })
+        .then(res => {
+          console.log(res.data);
+          Indicator.close();
+        })
+        .catch(e => {
+          console.log("登录失败!", e);
+          Indicator.close();
+        });
     }
   }
 };
