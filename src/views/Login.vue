@@ -93,7 +93,7 @@ export default {
       //   Indicator.close();
       // }, 2000);
       axios
-        .post("http://localhost:3002/api/login", {
+        .post("/api/login", {
           CNO: this.cm_code,
           PNO: this.PNO,
           Passwd: this.passwd
