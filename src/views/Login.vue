@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 import axios from "axios";
 import { Indicator, Toast } from "mint-ui";
 
@@ -70,6 +71,7 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(["initUser"]),
     autoLoginSet() {
       // 设置当前的autologin为true或者false，
       this.autologin = !this.autologin;
@@ -117,7 +119,8 @@ export default {
             sessionStorage.setItem("LoginUser", JSON.stringify(res.data.user));
 
             // 把当前登陆的用户信息放到 vuex
-            this.$store.commit("initUser", res.data.user);
+            // this.$store.commit("initUser", res.data.user);
+            this.initUser(res.data.user);
             // 跳转到home页面
             this.$router.push("/home");
           } else {

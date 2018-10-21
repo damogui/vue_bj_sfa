@@ -14,5 +14,10 @@ export default new Vuex.Store({
       state.LoginUser = payload;
     }
   },
-  actions: {}
+  actions: {},
+  getters: {
+    getLoginUser(state) {
+      return state.LoginUser;
+    }
+  }
 });
