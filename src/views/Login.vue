@@ -113,6 +113,11 @@ export default {
                 Passwd: this.rememb ? this.passwd : ""
               })
             );
+            // 把当前登陆的用户信息放到 sesstionStoreage里面一份。
+            sessionStorage.setItem("LoginUser", JSON.stringify(res.data.user));
+
+            // 把当前登陆的用户信息放到 vuex
+            this.$store.commit("initUser", res.data.user);
             // 跳转到home页面
             this.$router.push("/home");
           } else {

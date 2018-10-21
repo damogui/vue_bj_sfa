@@ -4,7 +4,15 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {},
-  mutations: {},
+  state: {
+    LoginUser: sessionStorage.getItem("LoginUser")
+      ? JSON.parse(sessionStorage.getItem("LoginUser"))
+      : null
+  },
+  mutations: {
+    initUser(state, payload) {
+      state.LoginUser = payload;
+    }
+  },
   actions: {}
 });
