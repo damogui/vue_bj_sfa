@@ -1,6 +1,6 @@
 <template>
   <div class="progress">
-    <div class="label">{{val}}<span v-if="isShowPercent">%</span></div>
+    <div class="label">{{val}}<span v-if="percent">%</span></div>
     <div class="pie-wrap" ref="pie"></div>
     <h3>{{title}}</h3>
   </div>
@@ -75,8 +75,34 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.pie-wrap {
+@mixin hwwrap {
   width: px2rem(175);
   height: px2rem(175);
+}
+.progress {
+  position: relative;
+  text-align: center;
+  color: #000;
+
+  .label {
+    line-height: px2rem(175);
+    position: absolute;
+    @include hwwrap;
+    left: 0;
+    top: 0;
+    font-size: px2rem(48);
+    span {
+      vertical-align: super;
+      font-size: $text-size-small;
+    }
+  }
+  h3 {
+    font-size: $text-size;
+    padding: px2rem(27) 0 px2rem(52);
+    line-height: $text-size;
+  }
+  .pie-wrap {
+    @include hwwrap;
+  }
 }
 </style>

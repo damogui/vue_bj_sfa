@@ -3,10 +3,12 @@
     <tophead title="SFA"><router-link to="/user" slot="r" class="icon iconfont icon-user"></router-link></tophead>
     <div class="main-bd">
       <div class="date-wrap">{{getYearMonth}}</div>
+      <div class="mp-wrap">
+        <mp title="当前月进度" :val="getDayOfMonth" :percent="true"></mp>
+        <mp title="月销售完成度" :val="50" :percent="true"></mp>
+        <mp title="有效商店数" :val="263" :percent="false"></mp>
+      </div>
     </div>
-    <mp title="当前月进度" :val="getDayOfMonth" :percent="true"></mp>
-    <mp title="月销售完成度" :val="50" :percent="true"></mp>
-    <mp title="有效商店数" :val="263" :percent="false"></mp>
     <div id="pie" ref="pie_wrap"></div>
   </div>
 </template>
@@ -88,6 +90,10 @@ export default {
     color: #000;
     font-size: $text-size-mid;
     text-align: center;
+  }
+  .mp-wrap {
+    display: flex;
+    justify-content: space-around;
   }
 }
 #pie {
