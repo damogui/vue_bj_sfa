@@ -41,6 +41,7 @@
 import { mapMutations } from "vuex";
 import axios from "axios";
 import { Indicator, Toast } from "mint-ui";
+import services from "../service";
 
 import "../assets/font/iconfont.css";
 export default {
@@ -94,8 +95,8 @@ export default {
       // setTimeout(() => {
       //   Indicator.close();
       // }, 2000);
-      axios
-        .post("/api/login", {
+      services
+        .login({
           CNO: this.cm_code,
           PNO: this.PNO,
           Passwd: this.passwd
@@ -117,6 +118,7 @@ export default {
             );
             // 把当前登陆的用户信息放到 sesstionStoreage里面一份。
             sessionStorage.setItem("LoginUser", JSON.stringify(res.data.user));
+            sessionStorage.setItem("LoginToken", res.data.token);
 
             // 把当前登陆的用户信息放到 vuex
             // this.$store.commit("initUser", res.data.user);

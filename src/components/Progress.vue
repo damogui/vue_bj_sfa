@@ -15,7 +15,7 @@ import "echarts/lib/component/tooltip";
 import "echarts/lib/component/title";
 
 export default {
-  name: "progress",
+  name: "myprogress",
   props: {
     title: { type: String, required: true },
     val: { type: Number, required: true },
@@ -25,51 +25,61 @@ export default {
     return {};
   },
   mounted() {
-    let data = [];
-    if (this.percent) {
-      data.push({ value: this.val, name: "" });
-      data.push({ value: 100 - this.val, name: "" });
-    } else {
-      data.push({ value: 0, name: "" });
-      data.push({ value: 100, name: "" });
+    this.initCircle();
+  },
+  watch: {
+    val: function() {
+      this.initCircle();
     }
-    // 基于准备好的dom，初始化echarts实例
-    let myChart = echarts.init(this.$refs.pie);
-    // 绘制图表
-    myChart.setOption({
-      color: ["rgb(102,208,113)", "rgb(223, 223, 223)"],
-      series: [
-        {
-          name: this.title,
-          type: "pie",
-          radius: ["95%", "100%"],
-          avoidLabelOverlap: false,
-          label: {
-            normal: {
-              show: true,
-              position: "center",
-              textStyle: {
-                fontSize: "48",
-                fontWeight: "bold"
+  },
+  methods: {
+    initCircle() {
+      let data = [];
+      if (this.percent) {
+        data.push({ value: this.val, name: "" });
+        data.push({ value: 100 - this.val, name: "" });
+      } else {
+        data.push({ value: 0, name: "" });
+        data.push({ value: 100, name: "" });
+      }
+      // 基于准备好的dom，初始化echarts实例
+      let myChart = echarts.init(this.$refs.pie);
+      // 绘制图表
+      myChart.setOption({
+        color: ["rgb(102,208,113)", "rgb(223, 223, 223)"],
+        series: [
+          {
+            name: this.title,
+            type: "pie",
+            radius: ["95%", "100%"],
+            avoidLabelOverlap: false,
+            label: {
+              normal: {
+                show: true,
+                position: "center",
+                textStyle: {
+                  fontSize: "48",
+                  fontWeight: "bold"
+                }
+              },
+              emphasis: {
+                show: true,
+                textStyle: {
+                  fontSize: "30",
+                  fontWeight: "bold"
+                }
               }
             },
-            emphasis: {
-              show: true,
-              textStyle: {
-                fontSize: "30",
-                fontWeight: "bold"
+            labelLine: {
+              normal: {
+                show: false
               }
-            }
-          },
-          labelLine: {
-            normal: {
-              show: false
-            }
-          },
-          data
-        }
-      ]
-    });
+            },
+            data
+          }
+        ]
+      });
+    }
   }
 };
 </script>

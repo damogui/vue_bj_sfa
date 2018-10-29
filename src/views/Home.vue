@@ -5,8 +5,8 @@
       <div class="date-wrap">{{getYearMonth}}</div>
       <div class="mp-wrap">
         <mp title="当前月进度" :val="getDayOfMonth" :percent="true"></mp>
-        <mp title="月销售完成度" :val="50" :percent="true"></mp>
-        <mp title="有效商店数" :val="263" :percent="false"></mp>
+        <mp title="月销售完成度" :val="mounthSealsPercent" :percent="true"></mp>
+        <mp title="有效商店数" :val="shops" :percent="false"></mp>
       </div>
     </div>
     <div id="pie" ref="pie_wrap"></div>
@@ -14,21 +14,28 @@
 </template>
 
 <script>
-import echarts from "echarts/lib/echarts";
-// 引入柱状图
-import "echarts/lib/chart/pie";
-// 引入提示框和标题组件
-import "echarts/lib/component/tooltip";
-import "echarts/lib/component/title";
-
 import HeadTop from "../components/TopHead";
 import progress from "../components/Progress";
+import service from "../service";
 
 export default {
   name: "home",
   components: {
     tophead: HeadTop,
     mp: progress
+  },
+  data() {
+    return {
+      mounthSealsPercent: 0,
+      shops: 0
+    };
+  },
+  created() {
+    // axios.get('/api/getUserProgress')
+    service.getUserProgress().then(res => {
+      this.mounthSealsPercent = parseInt(res.data.monthPercent * 100);
+      this.shops = res.data.totalShops;
+    });
   },
   computed: {
     getYearMonth() {
@@ -40,45 +47,7 @@ export default {
       return parseInt((t.getDate() / 30) * 100);
     }
   },
-  mounted() {
-    // 基于准备好的dom，初始化echarts实例
-    let myChart = echarts.init(this.$refs.pie_wrap);
-    // 绘制图表
-    myChart.setOption({
-      color: ["rgb(102,208,113)", "rgb(223, 223, 223)"],
-      series: [
-        {
-          name: "访问来源",
-          type: "pie",
-          radius: ["95%", "100%"],
-          avoidLabelOverlap: false,
-          label: {
-            normal: {
-              show: true,
-              position: "center",
-              textStyle: {
-                fontSize: "48",
-                fontWeight: "bold"
-              }
-            },
-            emphasis: {
-              show: true,
-              textStyle: {
-                fontSize: "30",
-                fontWeight: "bold"
-              }
-            }
-          },
-          labelLine: {
-            normal: {
-              show: false
-            }
-          },
-          data: [{ value: 30, name: "" }, { value: 70, name: "" }]
-        }
-      ]
-    });
-  }
+  mounted() {}
 };
 </script>
 
