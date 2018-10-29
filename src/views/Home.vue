@@ -9,7 +9,11 @@
         <mp title="有效商店数" :val="shops" :percent="false"></mp>
       </div>
     </div>
-    <div id="pie" ref="pie_wrap"></div>
+    <div class="main-nav">
+      <div class="nav-cell" v-for="i in 9" :key="i">
+        {{i}}
+      </div>
+    </div>
   </div>
 </template>
 
@@ -52,6 +56,29 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.home {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #fff;
+  .main-nav {
+    flex: 1;
+    padding: 0 px2rem(30);
+    display: flex;
+    flex-flow: row wrap;
+    align-content: stretch;
+    align-items: stretch;
+    border-top: 1px solid #ccc;
+    .nav-cell {
+      border-bottom: 1px solid #ccc;
+      border-right: 1px solid #ccc;
+      flex: 1 1 30%;
+    }
+    .nav-cell:nth-child(3n) {
+      border-right: none;
+    }
+  }
+}
 .main-bd {
   background-color: #fff;
   .date-wrap {
