@@ -1,0 +1,10 @@
+[
+  { "menuName": "公司通告", "imgUrl": "@/assets/img/gstg.png", "url": "/notice" },
+  { "menuName": "进店拜访", "imgUrl": "@/assets/img/jdbf.png", "url": "/visitshop" },
+  { "menuName": "电话订单", "imgUrl": "@/assets/img/dhdd.png", "url": "/phoneorder" },
+  { "menuName": "订单状态", "imgUrl": "@/assets/img/ddzt.png", "url": "/orders" },
+  { "menuName": "培训资料", "imgUrl": "@/assets/img/pxzl.png", "url": "/training" },
+  { "menuName": "消息中心", "imgUrl": "@/assets/img/xxzx.png", "url": "/message" },
+  { "menuName": "新增门店", "imgUrl": "@/assets/img/xzmd.png", "url": "/addedshop" },
+  { "menuName": "同步数据", "imgUrl": "@/assets/img/tbsj.png", "url": "/asyncdata" }
+]
