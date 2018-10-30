@@ -11,7 +11,13 @@
     </div>
     <div class="main-nav">
       <div class="nav-cell" v-for="i in 9" :key="i">
-        {{i}}
+        <template v-if="i<=menuList.length">
+          <menu-cell 
+            :url="menuList[i-1].url" 
+            :img-url="menuList[i-1].imgUrl" 
+            :menu-name="menuList[i-1].menuName">
+            </menu-cell>
+        </template>
       </div>
     </div>
   </div>
@@ -21,17 +27,63 @@
 import HeadTop from "../components/TopHead";
 import progress from "../components/Progress";
 import service from "../service";
+import menuCell from "../components/MenuCell";
+
+const menuList = [
+  {
+    menuName: "公司通告",
+    imgUrl: require("@/assets/img/gstg.png"),
+    url: "/notice"
+  },
+  {
+    menuName: "进店拜访",
+    imgUrl: require("@/assets/img/jdbf.png"),
+    url: "/visitshop"
+  },
+  {
+    menuName: "电话订单",
+    imgUrl: require("@/assets/img/dhdd.png"),
+    url: "/phoneorder"
+  },
+  {
+    menuName: "订单状态",
+    imgUrl: require("@/assets/img/ddzt.png"),
+    url: "/orders"
+  },
+  {
+    menuName: "培训资料",
+    imgUrl: require("@/assets/img/pxzl.png"),
+    url: "/training"
+  },
+  {
+    menuName: "消息中心",
+    imgUrl: require("@/assets/img/xxzx.png"),
+    url: "/message"
+  },
+  {
+    menuName: "新增门店",
+    imgUrl: require("@/assets/img/xzmd.png"),
+    url: "/addedshop"
+  },
+  {
+    menuName: "数据同步",
+    imgUrl: require("@/assets/img/sjtb.png"),
+    url: "/asyncdata"
+  }
+];
 
 export default {
   name: "home",
   components: {
     tophead: HeadTop,
-    mp: progress
+    mp: progress,
+    menuCell: menuCell
   },
   data() {
     return {
       mounthSealsPercent: 0,
-      shops: 0
+      shops: 0,
+      menuList: menuList
     };
   },
   created() {
